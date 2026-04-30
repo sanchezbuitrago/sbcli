@@ -72,10 +72,10 @@ def get_books(display_in_table: bool = typer.Option(False, "--display-in-table",
                     typer.echo("__________")
                     typer.echo(f"Nombre: {book.title}")
                     typer.echo(f"Autor: {book.author}")
-                    typer.echo(f"Precio Actual: {book.current_price}")
-                    typer.echo(f"Precio minimo: {book.min_price}")
-                    typer.echo(f"Precio maximo: {book.max_price}")
-                    typer.echo(f"Precio promedio: {book.average_price}")
+                    typer.echo(f"Precio Actual: {book.current_price:,.2f}")
+                    typer.echo(f"Precio minimo: {book.min_price:,.2f}")
+                    typer.echo(f"Precio maximo: {book.max_price:,.2f}")
+                    typer.echo(f"Precio promedio: {book.average_price:,.2f}")
                     typer.echo(f"Fecha Actualizacion: {book.last_updated_at}")
 
 
