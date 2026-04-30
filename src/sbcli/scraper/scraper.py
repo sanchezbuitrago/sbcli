@@ -78,6 +78,9 @@ def get_books(display_in_table: bool = typer.Option(False, "--display-in-table",
                     typer.echo(f"Precio promedio: {book.average_price:,.2f}")
                     typer.echo(f"Fecha Actualizacion: {book.last_updated_at}")
 
+                    if book.book_with_error:
+                        typer.echo(f"Error: {book.error_detail}")
+
 
     except requests.HTTPError as e:
         typer.echo(f"Error obteniendo el listado de libros: {str(e)}", err=True)

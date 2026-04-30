@@ -16,3 +16,5 @@ class Book:
     price_history_items: int
     last_updated_at: datetime.datetime
     created_at: datetime.datetime
+    book_with_error = bool = False
+    error_detail = str = ""
