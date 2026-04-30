@@ -47,7 +47,7 @@ def create_book(link: str = typer.Option(..., "--link", "-l", help="Enlace al re
 
 
 @scraper_app.command("get-books")
-def get_books():
+def get_books(display_in_table: bool = typer.Option(False, "--display-in-table", "-dt", help="Controla si se debe mostrar la informacion en una tabla")):
     server_url = get_url(context=_CONTEXT)
     if not server_url:
         typer.secho("❌ Error: URL no configurada. Ejecuta 'sbcli scraper config-url --link <url>' primero.", fg="red")
@@ -65,7 +65,19 @@ def get_books():
             for book in response.json()["books"]:
                 books.append(Book(**book))
 
-            _print_book_table(books=books)
+            if display_in_table:
+                _print_book_table(books=books)
+            else:
+                for book in books:
+                    typer.echo("__________")
+                    typer.echo(f"Nombre: {book.title}")
+                    typer.echo(f"Autor: {book.author}")
+                    typer.echo(f"Precio Actual: {book.current_price}")
+                    typer.echo(f"Precio minimo: {book.min_price}")
+                    typer.echo(f"Precio maximo: {book.max_price}")
+                    typer.echo(f"Precio promedio: {book.average_price}")
+                    typer.echo(f"Fecha Actualizacion: {book.last_updated_at}")
+
 
     except requests.HTTPError as e:
         typer.echo(f"Error obteniendo el listado de libros: {str(e)}", err=True)
