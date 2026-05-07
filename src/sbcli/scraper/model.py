@@ -1,6 +1,6 @@
 import decimal
 import datetime
-from dataclasses import dataclass
+from dataclasses import dataclass, fields
 
 
 @dataclass(frozen=True)
@@ -18,3 +18,8 @@ class Book:
     created_at: datetime.datetime
     book_with_error: bool = False
     error_detail: str = ""
+
+    @classmethod
+    def from_dict(cls, data: dict):
+        names = {f.name for f in fields(cls)}
+        return cls(**{k: v for k, v in data.items() if k in names})
