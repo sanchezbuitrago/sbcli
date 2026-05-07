@@ -63,7 +63,7 @@ def get_books(display_in_table: bool = typer.Option(False, "--display-in-table",
             count = response.json()["count"]
             typer.echo(f"Número de libros encontrados: {count}")
             for book in response.json()["books"]:
-                books.append(Book.from_dict(**book))
+                books.append(Book.from_dict(data=book))
 
             if display_in_table:
                 _print_book_table(books=books)
