@@ -77,6 +77,7 @@ def get_books(display_in_table: bool = typer.Option(False, "--display-in-table",
                     typer.echo(f"Precio maximo: {book.max_price:,.2f}")
                     typer.echo(f"Precio promedio: {book.average_price:,.2f}")
                     typer.echo(f"Fecha Actualizacion: {book.last_updated_at}")
+                    typer.echo(f"Score de precio: {book.price_score}")
 
                     if book.book_with_error:
                         typer.echo(f"Error: {book.error_detail}")

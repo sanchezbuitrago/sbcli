@@ -1,10 +1,12 @@
 import decimal
 import datetime
+from typing import Optional
 from dataclasses import dataclass, fields
 
 
 @dataclass(frozen=True)
 class Book:
+    id: str
     title: str
     author: str
     link: str
@@ -15,6 +17,7 @@ class Book:
     price_history_items: int
     last_updated_at: datetime.datetime
     created_at: datetime.datetime
+    price_score: Optional[decimal.Decimal] = None
     book_with_error: bool = False
     error_detail: str = ""
 
