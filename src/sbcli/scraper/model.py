@@ -5,7 +5,6 @@ from dataclasses import dataclass, fields
 
 @dataclass(frozen=True)
 class Book:
-    id: str
     title: str
     author: str
     link: str
